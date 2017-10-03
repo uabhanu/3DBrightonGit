@@ -4,18 +4,18 @@ using System.Collections.Generic;
 
 public class PlatformScript : MonoBehaviour 
 {
-    BoxCollider boxCollider;
-    MoneySpawnScript spawner;
-    Socket[] sockets;
+    BoxCollider m_boxCollider;
+    MoneySpawnScript m_moneySpawner;
+    Socket[] m_sockets;
 
-    [SerializeField] Transform otherPlatform;
+    [SerializeField] Transform m_otherPlatform;
 	
 	void Start()
 	{
-		sockets = otherPlatform.GetComponentsInChildren<Socket>();
+		m_sockets = m_otherPlatform.GetComponentsInChildren<Socket>();
 
-		spawner = GetComponent<MoneySpawnScript>();
-		boxCollider = GetComponent<BoxCollider>();
+		m_moneySpawner = GetComponent<MoneySpawnScript>();
+		m_boxCollider = GetComponent<BoxCollider>();
 	}
 	
 	void OnTriggerExit(Collider other)
@@ -28,17 +28,17 @@ public class PlatformScript : MonoBehaviour
 	
 	void Move()
 	{
-		int index = Random.Range (0 , sockets.Length);
-		transform.position = sockets [index].transform.position;
-		transform.rotation = sockets [index].transform.rotation;
+		int index = Random.Range(0 , m_sockets.Length);
+		transform.position = m_sockets[index].transform.position;
+		transform.rotation = m_sockets[index].transform.rotation;
 
-		float moveAmount = boxCollider.size.z / 2;
-		transform.Translate (0f , 0f , moveAmount);
+		float moveAmount = m_boxCollider.size.z / 2;
+		transform.Translate(0f , 0f , moveAmount);
 
 		//This functionality is added later
-		if(spawner != null)
+		if(m_moneySpawner != null)
         {
-            spawner.SpawnMoney ();
+            m_moneySpawner.SpawnMoney();
         }
 	}
 }
