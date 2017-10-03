@@ -274,8 +274,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 672c22e5365701649be3a4e1f2ce0dc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camDistance: 2.5
-  camHeight: 2.5
+  camDistance: 1.5
+  camHeight: 2.7
   targetHeight: 1.5
   smoothing: 5
   target: {fileID: 663582194}

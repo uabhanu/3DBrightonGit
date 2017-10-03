@@ -10,8 +10,8 @@ public class CameraFollow : MonoBehaviour
 
     void Reset()
     {
-        camDistance = 2.5f;
-        camHeight = 2.5f;
+        camDistance = 1.5f;
+        camHeight = 2.7f;
         smoothing = 5f;
         targetHeight = 1.5f;
         target = GameObject.FindGameObjectWithTag("Player").transform;
