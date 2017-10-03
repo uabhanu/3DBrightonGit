@@ -10,10 +10,11 @@ public class BagScript : MonoBehaviour
 	{
 		//This functionality is added later
 		if(GameManager.instance != null)
-			GameManager.instance.AddToScore (pointValue);
+        {
+            GameManager.instance.AddToScore(pointValue);
+        }
 		
-		Instantiate (effects, transform.position, Quaternion.Euler(270f, 0f, 0f));
-		
-		gameObject.SetActive (false);
+		Instantiate(effects , transform.position , Quaternion.Euler(270f , 0f , 0f));
+		gameObject.SetActive(false);
 	}
 }
