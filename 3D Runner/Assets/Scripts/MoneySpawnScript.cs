@@ -3,24 +3,25 @@ using System.Collections;
 
 public class MoneySpawnScript : MonoBehaviour 
 {
-	[SerializeField] GameObject moneyBags;
-	[SerializeField] int numBags = 10;
-	[SerializeField] float wDeviation = 2f;
+    GameObject[] bags;
+
+    [SerializeField] float wDeviation = 2f;
 	[SerializeField] float lDeviation = 15f;
 	[SerializeField] float bagHeight = 1f;
-
-	GameObject[] bags;
+    [SerializeField] GameObject moneyBags;
+	[SerializeField] int numBags = 10;
 
 	void Start()
 	{
 		bags = new GameObject[numBags];
+
 		for(int i = 0; i < bags.Length; i++)
 		{
 			bags[i] = (GameObject)Instantiate(moneyBags);
 			bags[i].SetActive(false);
 		}
 
-		SpawnMoney ();
+		SpawnMoney();
 	}
 
 	public void SpawnMoney()
@@ -29,7 +30,7 @@ public class MoneySpawnScript : MonoBehaviour
 		{
 			bags[i].transform.position = transform.position;
 			bags[i].transform.rotation = transform.rotation;
-			bags[i].transform.Translate(Random.Range(-wDeviation, wDeviation), bagHeight, Random.Range (-lDeviation, lDeviation));
+			bags[i].transform.Translate(Random.Range(-wDeviation , wDeviation) , bagHeight , Random.Range (-lDeviation , lDeviation));
 			bags[i].SetActive(true);
 		}
 	}

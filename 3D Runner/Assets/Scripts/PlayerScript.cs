@@ -5,27 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour 
 {
-	[SerializeField] float strafeSpeed = 2f;
-	[SerializeField] Transform groundTest;
-	[SerializeField] LayerMask whatIsGround;
-	
-	Animator anim;
+    Animator anim;
 	AudioSource audioSource;
+    bool running;
+    float ellapsedTime;
 	Rigidbody rigidBody;
-	float ellapsedTime;
-	bool running;
 
+	[SerializeField] float strafeSpeed = 2f;
+    [SerializeField] LayerMask whatIsGround;
+	[SerializeField] Transform groundTest;
 	
-	void Start () 
+	void Start() 
 	{
-		anim = GetComponent<Animator> ();
-		audioSource = GetComponent<AudioSource> ();
-		rigidBody = GetComponent<Rigidbody> ();
+		anim = GetComponent<Animator>();
+		audioSource = GetComponent<AudioSource>();
+		rigidBody = GetComponent<Rigidbody>();
 
 		ellapsedTime = 0f;
 	}
 	
-	void Update () 
+	void Update() 
 	{
 		if(!running)
 		{
@@ -35,7 +34,9 @@ public class PlayerScript : MonoBehaviour
 
 				//This functionality is added later
 				if(GameManager.instance != null)
-					GameManager.instance.StartScoring();
+                {
+                    GameManager.instance.StartScoring();
+                }
 
 				running = true;
 			}
@@ -48,65 +49,81 @@ public class PlayerScript : MonoBehaviour
 		#if UNITY_EDITOR || UNITY_STANDALONE
 		
 		if(Input.GetButtonDown("TurnLeft"))
-			TurnLeft();
+        {
+            TurnLeft();
+        }
+			
 		else if(Input.GetButtonDown ("TurnRight"))
-			TurnRight();
+        {
+            TurnRight();
+        }
+			
 		else if(Input.GetButtonDown("Slide"))
-			Slide ();
+        {
+            Slide();
+        }
+
 		else if(Input.GetButtonDown("Jump"))
-			Jump ();
+        {
+            Jump ();
+        }
+			
 		
-		transform.Translate(Input.GetAxis ("Mouse X") * strafeSpeed * Time.deltaTime, 0f, 0f);
+		transform.Translate(Input.GetAxis("Mouse X") * strafeSpeed * Time.deltaTime , 0f , 0f);
 		
 		#elif UNITY_ANDROID || UNITY_IPHONE || UNITY_WP8
 		
-		transform.Translate(Input.acceleration.x * 2f * strafeSpeed * Time.deltaTime, 0f, 0f);
+		transform.Translate(Input.acceleration.x * 2f * strafeSpeed * Time.deltaTime , 0f , 0f);
 		
 		#endif
 	}
 	
 	void FixedUpdate()
 	{
-		if(!Physics.CheckSphere(groundTest.position, .35f, whatIsGround))
+		if(!Physics.CheckSphere(groundTest.position , 0.35f , whatIsGround))
 		{
 			anim.SetBool("Grounded", false);
 			rigidBody.isKinematic = false;
 			
 			if(!audioSource.isPlaying)
-				audioSource.Play();
+            {
+                audioSource.Play();
+            }
 			
-			Invoke ("Restart", 4f);
+			Invoke("Restart" , 4f);
 
 			//This functionality is added later
 			if(GameManager.instance != null)
-				GameManager.instance.StopScoring();
+            {
+                GameManager.instance.StopScoring();
+            }
 		}
 	}
 	
 	public void TurnLeft()
 	{
-		transform.Rotate (0f, -90f, 0f);
+		transform.Rotate(0f , -90f , 0f);
 	}
 	
 	public void TurnRight()
 	{
-		transform.Rotate (0f, 90f, 0f);
+		transform.Rotate(0f , 90f , 0f);
 	}
 	
 	public void Slide()
 	{
-		anim.SetTrigger ("Slide");
+		anim.SetTrigger("Slide");
 	}
 	
 	public void Jump()
 	{
-		anim.SetTrigger ("Jump");
+		anim.SetTrigger("Jump");
 	}
 	
 	void Restart()
 	{
 		#if UNITY_5_5_OR_NEWER
-		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		#else
 		Application.LoadLevel (Application.loadedLevel);
 		#endif

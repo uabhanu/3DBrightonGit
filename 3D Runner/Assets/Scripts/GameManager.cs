@@ -4,62 +4,78 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour 
 {
-	public static GameManager instance;
+	bool playerAlive = false;
 
 	[SerializeField] Text highScoreText;
 	[SerializeField] Text scoreText;
 
 	//Public keyword will be removed later
+    public float score = 0;
+    public static GameManager instance;
 	public int highScore = 0;
-	public float score = 0;
-	bool playerAlive = false;
 
 	void Awake()
 	{
 		if(instance == null)
-			instance = this;
+        {
+            instance = this;
+        }
+			
 		else if(instance != this)
-			Destroy (this.gameObject);
+        {
+            Destroy(this.gameObject);
+        }
 	}
 
 	void Start()
 	{
-		GetSavedScore ();
+		GetSavedScore();
 	}
 
 	void Update()
 	{
 		if(playerAlive)
-			score += Time.deltaTime;
+        {
+            score += Time.deltaTime;
+        }
 
 		//This functionality is added later
 		if(scoreText != null)
-			scoreText.text = "Score: " + (int)score;
+        {
+            scoreText.text = "Score: " + (int)score;
+        }
 	}
 
 	void OnDisable()
 	{
-		SaveScore ();
+		SaveScore();
 	}
 
 	void GetSavedScore()
 	{
 		highScore = PlayerPrefs.GetInt ("HighScore");
-		//This functionality is added later
+		
+        //This functionality is added later
 		if(highScoreText != null)
-			highScoreText.text = "High Score: " + highScore;
+        {
+            highScoreText.text = "High Score: " + highScore;
+        }
 	}
 
 	void SaveScore()
 	{
 		if(score > highScore)
-			PlayerPrefs.SetInt("HighScore", (int)score);
+        {
+            PlayerPrefs.SetInt("HighScore", (int)score);
+        }
 	}
 
 	public void AddToScore(float amount)
 	{
 		if(playerAlive)
-			score += amount;
+        {
+            score += amount;
+        }
 	}
 
 	public void StartScoring()
