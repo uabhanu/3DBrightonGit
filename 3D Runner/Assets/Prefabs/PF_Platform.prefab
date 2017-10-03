@@ -37,6 +37,7 @@ GameObject:
   - component: {fileID: 4939071989284806}
   - component: {fileID: 65894700311407038}
   - component: {fileID: 65376179886707458}
+  - component: {fileID: 114640636367840712}
   - component: {fileID: 114474435237385860}
   m_Layer: 8
   m_Name: PF_Platform
@@ -218,7 +219,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5206dfc53c55fd429f5dd84504a3577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_otherPlatform: {fileID: 4939071989284806}
+  m_otherPlatform: {fileID: 0}
+--- !u!114 &114640636367840712
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1336846447328234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a9586838d8fc774a8cedaddb2bb57d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wDeviation: 2
+  lDeviation: 15
+  bagHeight: 1
+  moneyBags: {fileID: 1065178672056878, guid: 3d2e471857a161c469bcad8630d66371, type: 2}
+  numBags: 10
 --- !u!114 &114840491471341260
 MonoBehaviour:
   m_ObjectHideFlags: 1
