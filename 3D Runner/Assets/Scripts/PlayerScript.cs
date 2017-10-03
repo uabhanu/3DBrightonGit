@@ -112,12 +112,12 @@ public class PlayerScript : MonoBehaviour
 	
 	public void Slide()
 	{
-		anim.SetTrigger("Slide");
+		anim.SetTrigger("Slide"); //There is no need for Slide to Run Transition in Animator probably, try deleting when you are at home
 	}
 	
 	public void Jump()
 	{
-		anim.SetTrigger("Jump");
+		anim.SetTrigger("Jump"); //There is no need for Jump to Run Transition in Animator probably, try deleting when you are at home
 	}
 	
 	void Restart()
